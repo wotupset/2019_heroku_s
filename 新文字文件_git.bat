@@ -1,10 +1,10 @@
 
 
-git pull master
+git pull origin
 
 git add .
 git commit -am "make it better"
-git push master
+git push origin
 
 
 pause
