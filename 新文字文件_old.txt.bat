@@ -1,4 +1,13 @@
+echo # 2019_heroku_s >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:wotupset/2019_heroku_s.git
+git push -u origin master
 
+
+pause
+exit
 
 
 set GIT_PATH="C:\Program Files\Git\bin\git.exe"
