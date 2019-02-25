@@ -26,22 +26,32 @@ $db_p = parse_url( getenv("DATABASE_URL") );
 $db_p["path"]=ltrim($db_p["path"],"/");
 //print_r( $db_p );
 $db_p2=$db_p;
-//$tmp='';
-foreach($db_p2 as $k => $v){
-	if($k=="pass"){
-		$v=substr($v,0,4)."...省略";
-		$db_p2[$k]=$v;
-		//$v=hash('crc32', $v);
-	}else{
-		//$v=$v;
-	}
-	//echo "[$k]=".$v;
-	//echo "\n";
-}
+$db_p2['pass']=substr( $db_p2['pass'] ,0,4)."...省略";
 print_r( $db_p2 );
 
-$db_url="pgsql:host=".$db_p['host'].";port=".$db_p['port'].";user=".$db_p['user'].";password=".$db_p['pass'].";dbname=".$db_p["path"].";";
-print_r($db_url );
+$db_url='';
+$db_url="pgsql:";
+$db_url2=$db_url;
+
+foreach($db_p as $k => $v){
+}
+$cc=0;
+switch($cc){
+case 0:
+break;
+case 1:
+break;
+case 2:
+break;
+default:
+}
+$FFF=$db_p;
+$db_url="pgsql:host=".$FFF['host'].";port=".$FFF['port'].";user=".$FFF['user'].";password=".$FFF['pass'].";dbname=".$FFF["path"].";";
+$FFF=$db_p2;
+$db_url2="pgsql:host=".$FFF['host'].";port=".$FFF['port'].";user=".$FFF['user'].";password=".$FFF['pass'].";dbname=".$FFF["path"].";";
+
+//print_r($db_url );
+print_r($db_url2 );
                            
 //pgsql:host=localhost;port=5432;dbname=testdb;user=bruce;password=mypass
   
