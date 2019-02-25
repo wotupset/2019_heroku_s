@@ -189,9 +189,14 @@ while ($row = $stmt->fetch() ) {
 
 try{
 //插入資料
-if($rows_max>10){goto tryend;}
-echo '插入資料';
-echo "\n";
+if($rows_max>10){
+  echo '資料筆數大於10 不插入資料';
+  echo "\n";
+  goto tryend;
+}else{
+  echo '插入新資料';
+  echo "\n";
+}
 
   
 //;
