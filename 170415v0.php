@@ -171,6 +171,15 @@ $stmt->execute();
 $rows_max = $stmt->rowCount();//計數
 echo 'rows_max='.$rows_max."\n";
 
+//列出資料
+$cc=0;
+while ($row = $stmt->fetch() ) {
+  $cc++;
+  if($cc>1000){break;}
+  echo $row['c01']."\t".$row['c02']."\t".$row['c03']."\t".$row['c04']."\t".$row['id']."\t".$row['timestamp']."\n";
+  echo pg_unescape_bytea($row['c03'])."\n";
+}
+
   
   
 }catch(PDOException $e){
@@ -180,10 +189,10 @@ echo 'rows_max='.$rows_max."\n";
 
 try{
 //插入資料
+if($rows_max>10){goto tryend;}
 echo '插入資料';
 echo "\n";
 
-if($rows_max>10){goto tryend;}
   
 //;
 $sql=<<<EOT
@@ -205,14 +214,6 @@ $array=array(
 $stmt->execute($array);
   
 
-//列出資料
-$cc=0;
-while ($row = $stmt->fetch() ) {
-  $cc++;
-  if($cc>1000){break;}
-  echo $row['c01']."\t".$row['c02']."\t".$row['c03']."\t".$row['c04']."\t".$row['id']."\t".$row['timestamp']."\n";
-  echo pg_unescape_bytea($row['c03'])."\n";
-}
   
 }catch(Exception $e){
   print_r($db->errorInfo());
