@@ -102,7 +102,7 @@ EOT;
 $stmt = $db->prepare($sql);
 $stmt->execute();
 //
-
+$stmt2=$stmt;
 foreach($stmt as  $key => $value){ 
   $cc++;
   echo "#".$cc."\t";
@@ -111,6 +111,8 @@ foreach($stmt as  $key => $value){
   echo "\n";
 }
 
+
+$stmt=$stmt2;
 $cc=0;
 while ($row = $stmt->fetch() ) {
   if($row['tablename'] == $table_name ){
@@ -124,6 +126,11 @@ if($cc>0){
   echo '失敗';
   exit;
 }
+
+
+
+
+
 }
 catch(Exception $e){print_r($e);}//錯誤訊息
 catch(Error $e){print_r($e);}//錯誤訊息
