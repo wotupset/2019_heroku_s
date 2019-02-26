@@ -1,3 +1,7 @@
+pause
+exit
+
+
 echo # 2019_heroku_s >> README.md
 git init
 git add README.md
