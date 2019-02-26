@@ -195,7 +195,7 @@ if($err[0]>0){print_r( $err );}//錯誤資訊
 $cc=0;
 foreach($stmt as  $key => $value){ 
   $cc++;
-  echo "a".$cc."\t";
+  echo "#".$cc."\t";
   //print_r($value);
   echo $value['tablename']."";
   echo "\n";
