@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 /*
 PostgreSQL練習
@@ -746,5 +745,4 @@ while($row = $stmt->fetch() ) {
 }catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
 
 
->>>>>>> a5d3ebe16e1f0427ee8e772777d0728b3988cccc
 ?>
