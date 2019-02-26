@@ -38,8 +38,10 @@ $db->exec("set timezone TO '$tz';");//+8
 foreach( $db->query("show TimeZone") as $k => $v ){
   //echo 'pgsql_timezone='.$v[0]."\n";
 }
-}catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
-
+}catch(PDOException $e){
+	$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
+exit;
 
 
 try{

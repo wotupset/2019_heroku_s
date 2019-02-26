@@ -16,6 +16,8 @@ echo '[php]timezone='.$timezone."\n";
 echo '[php]now='.date("Y-m-d H:i:s",$time)."\n";
 echo '[php]UTC='.gmdate("Y-m-d H:i:s",$time)."\n";
 
+
+
 ///
 try{
 /*
@@ -80,11 +82,13 @@ echo "\n";
   
 
 
-}catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
+}catch(PDOException $e){
+	$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
 
 
 ///
-
+exit;
 
 
 echo '[php]version='.phpversion()."\n";
