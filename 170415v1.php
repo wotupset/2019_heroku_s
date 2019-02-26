@@ -102,28 +102,27 @@ EOT;
 $stmt = $db->prepare($sql);
 $stmt->execute();
 //
-$stmt2=$stmt;
+$cc=0;
 foreach($stmt as  $key => $value){ 
   $cc++;
   echo "#".$cc."\t";
   //print_r($value);
   echo $value['tablename']."";
   echo "\n";
-}
-
-
-$stmt=$stmt2;
-$cc=0;
-while ($row = $stmt->fetch() ) {
-  if($row['tablename'] == $table_name ){
+  if($value['tablename'] == $table_name ){
     $cc=$cc+1;
   }
 }
 
+while ($row = $stmt->fetch() ) {
+}
+
 if($cc>0){
   echo '有找到';
+  echo "\n";
 }else{
   echo '失敗';
+  echo "\n";
   exit;
 }
 
