@@ -36,7 +36,18 @@ $tmp.='password=' .$dbpass.';';
 
 $db = new PDO($tmp);
 if(!$db){die('連線失敗');}
-echo '連線狀態='.$db->getAttribute(PDO::ATTR_CONNECTION_STATUS);
+//echo '連線狀態='.$db->getAttribute(PDO::ATTR_CONNECTION_STATUS);
+//echo "\n";
+echo "連線成功";
+echo "\n";
+$arr=[
+	'status'=> $db->getAttribute(PDO::ATTR_CONNECTION_STATUS) ,
+	'name'=> $db->getAttribute(PDO::ATTR_DRIVER_NAME) ,
+	'server'=> $db->getAttribute(PDO::ATTR_SERVER_INFO) ,
+	'server_version'=> $db->getAttribute(PDO::ATTR_SERVER_VERSION) ,
+	'client_version'=> $db->getAttribute(PDO::ATTR_CLIENT_VERSION ) ,
+];
+print_r($arr);
 echo "\n";
 
 
