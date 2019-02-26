@@ -121,7 +121,7 @@ echo "\n";
 
 try{
 $table_name=<<<EOT
-nya170415
+nya20190226
 EOT;
 echo '[pgsql]table_name='.$table_name;
 echo "\n";
@@ -129,8 +129,8 @@ echo "\n";
 /*
 PostgreSQL移除table
 */
-//define("移除table", TRUE );//TRUE//false
-define("移除table", false );//TRUE//false
+define("移除table", TRUE );//TRUE//false
+//define("移除table", false );//TRUE//false
 //echo 移除table;
 //echo "\n";
 
