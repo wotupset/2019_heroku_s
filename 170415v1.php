@@ -41,7 +41,9 @@ foreach( $db->query("show TimeZone") as $k => $v ){
 }catch(PDOException $e){
 	$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
 }//錯誤訊息
-exit;
+
+//尚無輸出
+//exit;
 
 
 try{
@@ -81,6 +83,7 @@ if($cc>0){
 }
 }catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
 
+exit;
 
 
 

@@ -88,7 +88,7 @@ echo "\n";
 
 
 ///
-exit;
+//exit;
 
 
 echo '[php]version='.phpversion()."\n";
@@ -249,9 +249,12 @@ while ($row = $stmt->fetch() ) {
   echo "\n";
 }
   
-}catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
+}catch(PDOException $e){
+	$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
 
 
+exit;
 
 
 try{
