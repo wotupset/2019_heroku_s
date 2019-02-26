@@ -43,26 +43,22 @@ if(!$db){
 	echo "連線成功";
 	echo "\n";
 	$arr=[
-	'status'=> $db->getAttribute(PDO::ATTR_CONNECTION_STATUS) ,
-	'name'=> $db->getAttribute(PDO::ATTR_DRIVER_NAME) ,
-	'server'=> $db->getAttribute(PDO::ATTR_SERVER_INFO) ,
-	'version_s'=> $db->getAttribute(PDO::ATTR_SERVER_VERSION) ,
-	'version_c'=> $db->getAttribute(PDO::ATTR_CLIENT_VERSION ) ,
-	
+		'status'=> $db->getAttribute(PDO::ATTR_CONNECTION_STATUS) ,
+		'name'=> $db->getAttribute(PDO::ATTR_DRIVER_NAME) ,
+		'server'=> $db->getAttribute(PDO::ATTR_SERVER_INFO) ,
+		'server_version'=> $db->getAttribute(PDO::ATTR_SERVER_VERSION) ,
+		'client_version'=> $db->getAttribute(PDO::ATTR_CLIENT_VERSION ) ,
 	];
 	print_r($arr);
 	echo "\n";
 }
 
 
-//$db->exec("SET TIME ZONE '$tz';");//+8
-$db->exec("set timezone TO '$tz';");//+8
-
-
-  
-foreach( $db->query("show TimeZone") as $k => $v ){
-  echo 'pgsql_timezone='.$v[0]."\n";
-}
+	//$db->exec("SET TIME ZONE '$tz';");//+8
+	$db->exec("set timezone TO '$tz';");//+8
+	foreach( $db->query("show TimeZone") as $k => $v ){
+	  echo 'pgsql_timezone='.$v[0]."\n";
+	}
 }
 catch(PDOException $e){
 	$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
@@ -71,18 +67,16 @@ catch(Exception $e){print_r($e);}//錯誤訊息
 catch(Error $e){print_r($e);}//錯誤訊息
 
 
-exit;
+//exit;
 
 
 
-try{
-  
-}catch(PDOException $e){
-	$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
-}//錯誤訊息
+try{}
+catch(PDOException $e){print_r($e);}//錯誤訊息
 catch(Exception $e){print_r($e);}//錯誤訊息
 catch(Error $e){print_r($e);}//錯誤訊息
 
+//共用變數
 $table_name='nya170415';
 
 //刪除table

@@ -313,6 +313,9 @@ foreach ($array as $k=>$v){
 //exit;
 
 try{
+echo "列出資料";
+echo "\n";
+	
 $sql=<<<EOT
 select * from {$table_name} 
 EOT;
@@ -342,10 +345,12 @@ while ($row = $stmt->fetch() ) {
   
 }catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
 
-exit;
+//exit;
 
 
 try{
+echo "資料庫size";
+echo "\n";
 /*
 PostgreSQL資料庫size
 */
