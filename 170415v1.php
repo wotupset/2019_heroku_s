@@ -62,14 +62,17 @@ catch(Exception $e){print_r($e);}//錯誤訊息
 catch(Error $e){print_r($e);}//錯誤訊息
 
 
-//
-exit;
+//exit;
+
 
 
 try{
   
-}catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
-
+}catch(PDOException $e){
+	$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
+catch(Exception $e){print_r($e);}//錯誤訊息
+catch(Error $e){print_r($e);}//錯誤訊息
 
 $table_name='nya170415';
 
