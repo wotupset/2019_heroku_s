@@ -41,7 +41,10 @@ if(!$db){
 	die('連線失敗');
 }else{
 	$status = $db->getAttribute(PDO::ATTR_CONNECTION_STATUS);
+	$name = $db->getAttribute(PDO::ATTR_DRIVER_NAME);
 	echo $status;
+	echo "\n";
+	echo $name;
 	echo "\n";
 }
 
@@ -90,6 +93,11 @@ SELECT * FROM pg_catalog.pg_tables
 WHERE schemaname != 'pg_catalog' 
 AND schemaname != 'information_schema';
 EOT;
+$sql=<<<EOT
+SELECT * FROM pg_catalog.pg_tables 
+WHERE schemaname = 'public';
+EOT;
+
 //AND schemaname != 'information_schema';
 $stmt = $db->prepare($sql);
 $stmt->execute();
