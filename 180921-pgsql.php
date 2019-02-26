@@ -129,8 +129,15 @@ echo "\n";
 /*
 PostgreSQL移除table
 */
+//define("移除table", TRUE );//TRUE//false
+define("移除table", false );//TRUE//false
+//echo 移除table;
+//echo "\n";
 
-if(1){
+if( 移除table ){
+echo "移除table";
+echo "\n";
+	
 $sql=<<<EOT
 DROP TABLE IF EXISTS {$table_name}
 EOT;
@@ -152,6 +159,10 @@ $stmt->execute();
 $err=$db->errorInfo();
 if($err[0]>0){print_r( $err );}//錯誤資訊
 
+}else{
+echo "不移除table";
+echo "\n";
+	
 }
   
 /*
