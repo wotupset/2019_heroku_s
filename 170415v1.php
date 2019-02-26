@@ -8,6 +8,8 @@ $tz=date_default_timezone_get();
 //echo 'php_timezone='.$tz."\n";
 $time  =time();
 $time2 =array_sum( explode( ' ' , microtime() ) );
+echo $time;
+echo "\n";
 
 //echo 'now='.date("Y-m-d H:i:s",$time)."\n";
 //echo 'UTC='.gmdate("Y-m-d H:i:s",$time)."\n";
@@ -17,6 +19,9 @@ $time2 =array_sum( explode( ' ' , microtime() ) );
 //if( $auth != "國" ){exit;}
 
 try{
+echo "建立pgsql連線";
+echo "\n";
+	
 $dbopts=parse_url(getenv('DATABASE_URL'));
 //print_r($dbopts);
 $dbhost = $dbopts["host"];
@@ -38,12 +43,16 @@ $db->exec("set timezone TO '$tz';");//+8
 foreach( $db->query("show TimeZone") as $k => $v ){
   //echo 'pgsql_timezone='.$v[0]."\n";
 }
-}catch(PDOException $e){
+}
+catch(PDOException $e){
 	$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
 }//錯誤訊息
+catch(Exception $e){print_r($e);}//錯誤訊息
+catch(Error $e){print_r($e);}//錯誤訊息
 
-//尚無輸出
-//exit;
+
+//
+exit;
 
 
 try{
@@ -60,6 +69,8 @@ $table_name='nya170415';
 
 try{
 //列出全部table
+echo "列出全部table";
+echo "\n";
 $sql=<<<EOT
 SELECT * FROM pg_catalog.pg_tables 
 WHERE schemaname != 'pg_catalog' 
@@ -81,8 +92,11 @@ if($cc>0){
   echo '失敗';
   exit;
 }
-}catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
+}
+catch(Exception $e){print_r($e);}//錯誤訊息
+catch(Error $e){print_r($e);}//錯誤訊息
 
+//
 exit;
 
 

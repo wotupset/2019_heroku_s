@@ -229,6 +229,8 @@ $err=$db->errorInfo();
 if($err[0]>0){print_r( $err );}//錯誤資訊
 
 ////
+echo "列出非系統table";
+echo "\n";
 $sql=<<<EOT
 SELECT * FROM pg_catalog.pg_tables 
 WHERE schemaname = 'public';
@@ -254,7 +256,7 @@ while ($row = $stmt->fetch() ) {
 }//錯誤訊息
 
 
-exit;
+//exit;
 
 
 try{
@@ -304,6 +306,8 @@ foreach ($array as $k=>$v){
   
 }catch(Exception $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
 
+
+exit;
 
 try{
 $sql=<<<EOT
