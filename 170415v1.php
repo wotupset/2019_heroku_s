@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE); //所有錯誤中排除NOTICE提示
-
+header("content-Type: application/json; charset=utf-8"); //強制
 //header("content-Type: application/json; charset=utf-8"); //強制
 date_default_timezone_set("Asia/Taipei");//時區設定
 //date_default_timezone_set("UTC");//時區設定
@@ -37,11 +37,22 @@ $tmp.='user='     .$dbuser.';';
 $tmp.='password=' .$dbpass.';';
 
 $db = new PDO($tmp);
+if(!$db){
+	die('連線失敗');
+}else{
+	$status = $db->getAttribute(PDO::ATTR_CONNECTION_STATUS);
+	echo $status;
+	echo "\n";
+}
+
+
 //$db->exec("SET TIME ZONE '$tz';");//+8
 $db->exec("set timezone TO '$tz';");//+8
+
+
   
 foreach( $db->query("show TimeZone") as $k => $v ){
-  //echo 'pgsql_timezone='.$v[0]."\n";
+  echo 'pgsql_timezone='.$v[0]."\n";
 }
 }
 catch(PDOException $e){

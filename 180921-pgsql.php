@@ -1,9 +1,10 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE); //所有錯誤中排除NOTICE提示
+header("content-Type: application/json; charset=utf-8"); //強制
 /*
 PostgreSQL練習
 */
-header("content-Type: application/json; charset=utf-8"); //強制
+
 
 
 
@@ -260,6 +261,8 @@ while ($row = $stmt->fetch() ) {
 
 
 try{
+echo "插入資料";
+echo "\n";
 
 //插入資料 方法1 问号占位符的预处理语句
 $sql=<<<EOT
@@ -307,7 +310,7 @@ foreach ($array as $k=>$v){
 }catch(Exception $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
 
 
-exit;
+//exit;
 
 try{
 $sql=<<<EOT
@@ -338,6 +341,8 @@ while ($row = $stmt->fetch() ) {
   
   
 }catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
+
+exit;
 
 
 try{
