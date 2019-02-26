@@ -1,6 +1,5 @@
 <?php
 //header("content-Type: application/json; charset=utf-8"); //強制
-
 echo $tmp=parse_url(getenv("DATABASE_URL"));
 echo "\n";
 
@@ -13,5 +12,6 @@ $db->port = ''.$_ENV['MYSQL_PORT'];
 //print_r($db);
 echo $db->host;
 echo "\n";
+
 
 ?>
