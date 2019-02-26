@@ -40,11 +40,16 @@ $db = new PDO($tmp);
 if(!$db){
 	die('連線失敗');
 }else{
+	echo "連線成功";
+	echo "\n";
 	$status = $db->getAttribute(PDO::ATTR_CONNECTION_STATUS);
 	$name = $db->getAttribute(PDO::ATTR_DRIVER_NAME);
+	$server = $db->getAttribute(PDO::ATTR_SERVER_INFO)
 	echo $status;
 	echo "\n";
 	echo $name;
+	echo "\n";
+	echo $server;
 	echo "\n";
 }
 
