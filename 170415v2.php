@@ -83,7 +83,7 @@ if($cc>0){
 
 
 $id=(int)$query_string;
-if($id==0){$id=123;}
+if($id==0){$id=1;}
 
 ob_start();
 

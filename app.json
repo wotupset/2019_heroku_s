@@ -1,0 +1,30 @@
+{
+  "addons": [
+    "heroku-postgresql",
+    "heroku-postgresql",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ],
+  "description": "這是說明",
+  "env": {
+    "HEROKU_POSTGRESQL_JADE_URL": {
+      "required": true
+    },
+    "HEROKU_POSTGRESQL_OLIVE_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "2019_heroku_s",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}

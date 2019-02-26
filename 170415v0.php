@@ -118,7 +118,9 @@ $stmt->execute();
 while ($row = $stmt->fetch() ) {
   echo $row['tablename']."\n";
 }
-}catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
+}catch(PDOException $e){
+  $chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
 
 try{
 //列出column名稱與格式
@@ -134,6 +136,8 @@ EOT;
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
+$columns_max = $stmt->columnCount();//計數
+echo 'columns_max='.$columns_max."\n";
 
 $cc=0;
 while ($row = $stmt->fetch() ) {
@@ -145,32 +149,56 @@ while ($row = $stmt->fetch() ) {
   echo "\n";
 }
 
-}catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
+}catch(PDOException $e){
+  $chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
 
 
-
-
-if(0){
-try{
-//插入資料
-//;
-$sql=<<<EOT
-INSERT INTO $table_name (c01,c02,c03)
-VALUES ( ? , ? , ? );
-EOT;
-$stmt=$db->prepare($sql);
-$array=array( uniqid('u',1),'不用不用',  $time );
-$stmt->execute($array);
-  
-}catch(Exception $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
-
-}
 
 try{
-//插入資料
-echo '插入資料';
+//列出資料 (全部)
+echo '資料筆數';
 echo "\n";
 
+$sql=<<<EOT
+select * from $table_name 
+ORDER BY timestamp DESC
+EOT;
+// LIMIT 10
+$stmt = $db->prepare($sql);
+$stmt->execute();
+
+$rows_max = $stmt->rowCount();//計數
+echo 'rows_max='.$rows_max."\n";
+
+//列出資料
+$cc=0;
+while ($row = $stmt->fetch() ) {
+  $cc++;
+  if($cc>1000){break;}
+  echo $row['c01']."\t".$row['c02']."\t".$row['c03']."\t".$row['c04']."\t".$row['id']."\t".$row['timestamp']."\n";
+  echo pg_unescape_bytea($row['c03'])."\n";
+}
+
+  
+  
+}catch(PDOException $e){
+  $chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
+
+
+try{
+//插入資料
+if($rows_max>10){
+  echo '資料筆數大於10 不插入資料';
+  echo "\n";
+  goto tryend;
+}else{
+  echo '插入新資料';
+  echo "\n";
+}
+
+  
 //;
 $sql=<<<EOT
 INSERT INTO $table_name (c01,c02,c03)
@@ -191,50 +219,40 @@ $array=array(
 $stmt->execute($array);
   
 
-
-
-
   
 }catch(Exception $e){
   print_r($db->errorInfo());
   print_r($db->errorCode());
-  $chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
+  $chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
+
+//goto的位置
+tryend:
+exit;
+////
 
 
 
+
+if(0){
 try{
-//列出資料 (全部)
-echo '列出資料';
-echo "\n";
-
+//插入資料
+//;
 $sql=<<<EOT
-select * from $table_name 
-ORDER BY timestamp DESC
+INSERT INTO $table_name (c01,c02,c03)
+VALUES ( ? , ? , ? );
 EOT;
-// LIMIT 10
-$stmt = $db->prepare($sql);
-$stmt->execute();
+$stmt=$db->prepare($sql);
+$array=array( uniqid('u',1),'不用不用',  $time );
+$stmt->execute($array);
+  
+}catch(Exception $e){
+  $chk=$e->getMessage();print_r("try-catch錯誤:".$chk);
+}//錯誤訊息
 
-$rows_max = $stmt->rowCount();//計數
-echo 'rows_max='.$rows_max."\n";
-$columns_max = $stmt->columnCount();//計數
-echo 'columns_max='.$columns_max."\n";
-
-if(1){
-  //
-$cc=0;
-while ($row = $stmt->fetch() ) {
-  $cc++;
-  if($cc>1000){break;}
-  echo $row['c01']."\t".$row['c02']."\t".$row['c03']."\t".$row['c04']."\t".$row['id']."\t".$row['timestamp']."\n";
-  echo pg_unescape_bytea($row['c03'])."\n";
 }
-  //
-}  
-  
 
-  
-}catch(PDOException $e){$chk=$e->getMessage();print_r("try-catch錯誤:".$chk);}//錯誤訊息
+
 
 ////
 
