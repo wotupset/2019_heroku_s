@@ -42,14 +42,15 @@ if(!$db){
 }else{
 	echo "連線成功";
 	echo "\n";
-	$status = $db->getAttribute(PDO::ATTR_CONNECTION_STATUS);
-	$name = $db->getAttribute(PDO::ATTR_DRIVER_NAME);
-	$server = $db->getAttribute(PDO::ATTR_SERVER_INFO)
-	echo $status;
-	echo "\n";
-	echo $name;
-	echo "\n";
-	echo $server;
+	$arr=[
+	'status'=> $db->getAttribute(PDO::ATTR_CONNECTION_STATUS) ,
+	'name'=> $db->getAttribute(PDO::ATTR_DRIVER_NAME) ,
+	'server'=> $db->getAttribute(PDO::ATTR_SERVER_INFO) ,
+	'version_s'=> $db->getAttribute(PDO::ATTR_SERVER_VERSION) ,
+	'version_c'=> $db->getAttribute(PDO::ATTR_CLIENT_VERSION ) ,
+	
+	];
+	print_r($arr);
 	echo "\n";
 }
 
@@ -70,7 +71,7 @@ catch(Exception $e){print_r($e);}//錯誤訊息
 catch(Error $e){print_r($e);}//錯誤訊息
 
 
-//exit;
+exit;
 
 
 
