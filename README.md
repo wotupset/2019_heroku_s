@@ -6,6 +6,8 @@ https://dashboard.heroku.com/apps
 
 ```php
 echo 'eee';
+$arr=[11,22];
+print_r($arr);
 ```
 
 https://evening-savannah-18357.herokuapp.com/
